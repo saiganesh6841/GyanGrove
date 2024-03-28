@@ -64,6 +64,7 @@ Errors are returned in JSON format with appropriate HTTP status codes.
 
 ## End points
 events/find?page=1
+url:http://localhost:3099/events/find?page=1
 
 
 ### POST/events/find?page=1
