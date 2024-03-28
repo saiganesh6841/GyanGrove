@@ -65,7 +65,10 @@ const userController = {
                    
                       return { ...event, weather: dd[index].weather,distance:distancing[index].distance };
                   });
-                  // console.log(eventsWithWeather)
+                  //  console.log(eventsWithWeather.length)
+                  if(eventsWithWeather.length==0){
+                    return res.status(400).json({ status: "failed", error: "No Events are there for particular date" });
+                  }
                   const pageSize = 10;
                   const totalPages = Math.ceil(eventsWithWeather.length / pageSize);
                   const page = req.query.page || 1;
