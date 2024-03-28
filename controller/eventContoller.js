@@ -6,7 +6,15 @@ const userController = {
         try {
           const {latitude,longitude,date}=req.body
 
-          const startDate = new Date(date); // Convert the date string to a Date object
+          if ( !date || !latitude || !longitude) {
+            return res.status(400).json({ status: "failed", error: "All Fields Are Required" });
+        }
+        const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+      if (!dateRegex.test(date)) {
+          return res.status(400).json({ status: "failed", error: "Invalid date format. Please use YYYY-MM-DD" });
+      }
+
+          const startDate = new Date(date); 
           const endDate = new Date(date);
           endDate.setDate(endDate.getDate() + 14);
           const startDateString = startDate.toISOString().split('T')[0]; 
@@ -42,8 +50,8 @@ const userController = {
                     .catch(error => { throw error; });
             });
 
-            const distanceMeasure=latitude2.map((latitude,index)=>{
-              return axios.get(`https://gg-backend-assignment.azurewebsites.net/api/Distance?code=${Distance_API_CODE}&latitude1=${latitude}&longitude1=${longitude}&latitude2=${latitude}&longitude2=${longitude2[index]}`)
+            const distanceMeasure=latitude2.map((latitude22,index)=>{
+              return axios.get(`https://gg-backend-assignment.azurewebsites.net/api/Distance?code=${Distance_API_CODE}&latitude1=${latitude}&longitude1=${longitude}&latitude2=${latitude22}&longitude2=${longitude2[index]}`)
               .then(response => response.data)
               .catch(error => { throw error; });
             })

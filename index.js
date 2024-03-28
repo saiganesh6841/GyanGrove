@@ -2,7 +2,7 @@
 require('dotenv').config();
 let express=require('express')
 const cors = require('cors');
-const dotenv = require('dotenv');
+// const dotenv = require('dotenv');
 
 let app=express()
 app.use(express.json())

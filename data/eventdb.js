@@ -1,7 +1,7 @@
 
 // const dbHost = process.env.DB_HOST;
 // console.log(dbHost)
-// console.log(process.env.DB_HOST);
+console.log(process.env.DB_HOST);
 const sql=require('mysql2')
 
 let conn=sql.createConnection({
